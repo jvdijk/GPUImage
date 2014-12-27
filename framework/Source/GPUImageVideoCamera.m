@@ -962,6 +962,11 @@ NSString *const kGPUImageYUVVideoRangeConversionForLAFragmentShaderString = SHAD
             
             [self processVideoSampleBuffer:sampleBuffer];
             
+            if (self.delegate)
+            {
+                [self.delegate didOutputSampleBuffer:sampleBuffer];
+            }
+            
             CFRelease(sampleBuffer);
             dispatch_semaphore_signal(frameRenderingSemaphore);
         });
